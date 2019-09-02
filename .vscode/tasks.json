@@ -3,6 +3,7 @@
     "command": "g++",
     "args": [
         "-g",
+        // "-std=c++11",
         "${file}",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}.exe"
