@@ -26,40 +26,39 @@ const int min(const int &l, const int &r)
 	return (l <= r) ? l : r;
 }
 
-std::tuple<int, bool> compare(const vector<pair<int, int>>::iterator &Hiter, const pair<int, int> &W)
+std::tuple<int, bool> compare(const pair<int, int> &Hiter, const pair<int, int> &W)
 {
 	int timeGap = 0;
-	bool jump = false;
-	int maxL = max((*Hiter).first, W.first);
-	int minR = min((*Hiter).second, W.second);
-	if (maxL >= minR)    return std::make_tuple(0, false);
+	int maxL = max(Hiter.first, W.first);
+	int minR = min(Hiter.second, W.second);
+	int minL = min(Hiter.first, W.first);
+	int maxR = max(Hiter.second, W.second);
+	if (maxL >= minR)
+		return std::make_tuple(0, W.second < Hiter.second);
 	timeGap = minR - maxL;
-	jump = W.second < (*Hiter).second;
-	return std::make_tuple(timeGap, jump);
+	return std::make_tuple(timeGap, W.second <= Hiter.second);
 }
 
 int main(int argc, char **argv)
 {
 	int n;
 	cin >> n;   // 时间段
-	vector<pair<int, int>> littleH(n, pair<int, int>(0, 0));
-
+	vector<pair<int, int>> littleH(n, pair<int, int>(0, 0)), littleW(n, pair<int, int>(0, 0));
+	int time = 0;
+	std::tuple<int, bool> comp;
 	for (pair<int, int> &iter : littleH)
 		cin >> iter.first >> iter.second;
-	int l, r;
-	unsigned long int time = 0;
-	auto Hiter = littleH.begin();
-	std::tuple<int, int> comp;
-	for (int i = 0; i < n; i++)
+	for (pair<int, int> &iter : littleW)
 	{
-		cin >> l >> r;
-		while (!std::get<1>(comp = compare(Hiter, pair<int, int>(l, r))))
+		cin >> iter.first >> iter.second;
+		for (auto &iterH : littleH)
 		{
+			comp = compare(iterH, iter);
 			time += std::get<0>(comp);
-			Hiter++;
+			if (std::get<1>(comp) == true)	break;
 		}
 	}
 	cout << time << endl;
-	system("pause");
+	// system("pause");
 	return 0;
 }
