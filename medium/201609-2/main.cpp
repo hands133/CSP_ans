@@ -29,15 +29,13 @@ void buy(vector<vector<int>> &seats, int& num)
 			return;
 		}
 	}
-	int index = 0;
-	auto iter = seats[0].begin();
 
+	int index = 0;
 	while (num > 0)
 	{
-		if (seats[index].size() == 5)
-			iter = seats[++index].end();
-		seats[index].insert(iter++, ticketNo++);
-		cout << index * 5 + (iter - seats[index].begin()) << " ";
+		while (seats[index].size() == 5)    index++;
+        seats[index].push_back(ticketNo++);
+		cout << index * 5 + seats[index].size() << " ";
 		num--;
 	}
 }
