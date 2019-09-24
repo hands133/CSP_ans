@@ -2,6 +2,8 @@
     "files.associations": {
         "iomanip": "cpp",
         "ostream": "cpp",
-        "tuple": "cpp"
-    }
+        "tuple": "cpp",
+        "queue": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
