@@ -10,14 +10,16 @@ using std::endl;
 
 using std::vector;
 
+using std::ios::sync_with_stdio();
+
 // Z 扫描
 
-// ！！！！！！！！！超时！！！！！！！！！！！
-// ！！！！！！！！！超时！！！！！！！！！！！
-// ！！！！！！！！！超时！！！！！！！！！！！
-// ！！！！！！！！！超时！！！！！！！！！！！
-// ！！！！！！！！！超时！！！！！！！！！！！
-// ！！！！！！！！！超时！！！！！！！！！！！
+// ！！超时！！
+// ！！超时！！
+// ！！超时！！
+// ！！超时！！
+// ！！超时！！
+// ！！超时！！
 
 
 enum dir { RIGHT, DIAGDOWN, DOWN, DIAGUP };
@@ -90,6 +92,7 @@ const bool gothrough(const vector<vector<int>> &matrix, int &i, int &j)
 
 int main(int argc, char **argv)
 {
+	ios::sync_with_stdio(false);
 	srand(seed);
 	cin >> N;	// 矩阵大小
 	// N = 100;
