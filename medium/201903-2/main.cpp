@@ -21,7 +21,7 @@ const int cal(const int& l, const int& r, const char& opCode)
 	{
 	case '+':   return l + r;
 	case '-':   return l - r;
-	case '*':   return l * r;
+	case 'x':   return l * r;
 	case '/':   return l / r;
 	default:   break;
 	}
@@ -31,7 +31,7 @@ const int encode(const char &c)
 {
 	switch (c)
 	{
-	case '*':  return 2;
+	case 'x':  return 2;
 	case '/':  return 2;
 	case '+':  return 1;
 	case '-':  return 1;
@@ -102,7 +102,7 @@ const int calResult(char *buffer)
 void randomize(char *buffer)
 {
     
-    char map[4] = { '+' , '-' , '*' , '/' };
+    char map[4] = { '+' , '-' , 'x' , '/' };
     for(int i = 0; i < 7; i++)
     {
         if(i % 2 == 0)
@@ -148,6 +148,6 @@ int main(int argc, char **argv)
 	}
 	for (const bool &b : result)
 		cout << (b ? "Yes" : "No") << endl;
-	system("pause");
+	// system("pause");
 	return 0;
 }

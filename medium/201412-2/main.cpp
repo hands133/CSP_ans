@@ -10,7 +10,7 @@ using std::endl;
 
 using std::vector;
 
-using std::ios::sync_with_stdio();
+using std::ios;
 
 // Z 扫描
 
@@ -27,7 +27,7 @@ dir direction[4] = { RIGHT, DIAGDOWN, DOWN, DIAGUP };
 
 int lastDir = 0;	// 上一次的方向下标
 void inc(int& i) { i = (i + 1) % 4; }
-#define INC() {inc(lastDir);}
+#define INC() { inc(lastDir); }
 
 int N;
 vector<vector<int>> matrix;
@@ -44,10 +44,10 @@ const bool nextStep(const int& i, const int& j, const dir& direction)
 {	// 判断在位置 (i, j) 并按照 direction 方向走一步是否合法
 	switch (direction)
 	{
-		case RIGHT:		return judge(i, j + 1);		break;
-		case DIAGDOWN:	return judge(i + 1, j - 1);	break;
-		case DOWN:		return judge(i + 1, j);		break;
-		case DIAGUP:	return judge(i - 1, j + 1);	break;
+	case RIGHT:		return judge(i, j + 1);		break;
+	case DIAGDOWN:	return judge(i + 1, j - 1);	break;
+	case DOWN:		return judge(i + 1, j);		break;
+	case DIAGUP:	return judge(i - 1, j + 1);	break;
 	}
 }
 
@@ -58,34 +58,34 @@ const bool gothrough(const vector<vector<int>> &matrix, int &i, int &j)
 	int count = 0;
 	switch (direction[lastDir])
 	{
-		case RIGHT:
-		{
-			disp(matrix[i][j]);
-			j++;
-			do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
-		}
-		break;
-		case DIAGDOWN:
-		{
-			while (nextStep(i, j, DIAGDOWN)) { disp(matrix[i][j]); i++; j--; }
-			do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
-			if (direction[lastDir] == DIAGUP)	lastDir++;
-		}
-		break;
-		case DOWN:
-		{
-			disp(matrix[i][j]);
-			i++;
-			do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
-		}
-		break;
-		case DIAGUP:
-		{
-			while (nextStep(i, j, DIAGUP)) { disp(matrix[i][j]); i--; j++; }
-			do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
-			if (direction[lastDir] == DIAGDOWN)	lastDir++;
-		}
-		break;
+	case RIGHT:
+	{
+		disp(matrix[i][j]);
+		j++;
+		do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
+	}
+	break;
+	case DIAGDOWN:
+	{
+		while (nextStep(i, j, DIAGDOWN)) { disp(matrix[i][j]); i++; j--; }
+		do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
+		if (direction[lastDir] == DIAGUP)	lastDir++;
+	}
+	break;
+	case DOWN:
+	{
+		disp(matrix[i][j]);
+		i++;
+		do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
+	}
+	break;
+	case DIAGUP:
+	{
+		while (nextStep(i, j, DIAGUP)) { disp(matrix[i][j]); i--; j++; }
+		do { INC(); count++; } while (!nextStep(i, j, direction[lastDir]) && count < 5);
+		if (direction[lastDir] == DIAGDOWN)	lastDir++;
+	}
+	break;
 	}
 	return !(i == N - 1 && j == N - 1);
 }
@@ -107,12 +107,12 @@ int main(int argc, char **argv)
 	for (auto &iter : matrix)
 		for (auto &item : iter)
 			cin >> item;
-			// item = rand() % 1000;
+	// item = rand() % 1000;
 	int i = 0;
 	int j = 0;
 
 	while (gothrough(matrix, i, j)) {}
 	cout << matrix[N - 1][N - 1] << endl;
-	system("pause");
+	// system("pause");
 	return 0;
 }

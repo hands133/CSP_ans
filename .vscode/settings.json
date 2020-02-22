@@ -4,7 +4,8 @@
         "ostream": "cpp",
         "tuple": "cpp",
         "queue": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "iostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
