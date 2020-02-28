@@ -23,7 +23,7 @@ bool isDigit(char k)
 	return false;
 }
 
-//ÒÔÌØ¶¨×Ö·û·Ö¸î×Ö·û´®
+//ä»¥ç‰¹å®šå­—ç¬¦åˆ†å‰²å­—ç¬¦ä¸²
 vector<string> split(string &str, char s)
 {
 	vector<string> temp;
@@ -45,10 +45,10 @@ vector<string> split(string &str, char s)
 	return temp;
 }
 
-//<ÕûÊı> == <Êı×Ö> | <ÕûÊı> <Êı×Ö>
+//<æ•´æ•°> == <æ•°å­—> | <æ•´æ•°> <æ•°å­—>
 int Digits(string &str, int start)
-{//½øÈë´Ëº¯ÊıÌõ¼ş£¬¼ì²âµ½str[start]ÎªÊı×Ö
-	//´Óstr´Óstart¿ªÊ¼»ñÈ¡Ò»¸öÊı×Ö·µ»Ø£¬²¢½«¸ÃÊı×Ö´ÓstrÖĞÉ¾³ı
+{//è¿›å…¥æ­¤å‡½æ•°æ¡ä»¶ï¼Œæ£€æµ‹åˆ°str[start]ä¸ºæ•°å­—
+	//ä»strä»startå¼€å§‹è·å–ä¸€ä¸ªæ•°å­—è¿”å›ï¼Œå¹¶å°†è¯¥æ•°å­—ä»strä¸­åˆ é™¤
 	string snum;
 	int tstart = start;
 	while (isDigit(str[start]))
@@ -57,14 +57,14 @@ int Digits(string &str, int start)
 		start++;
 	}
 	str.erase(tstart, start - tstart);
-	//cout << "»ñÈ¡Êı×Ö " << snum << ", Ê£Óà×Ö·û´® " << str << "\n";
+	//cout << "è·å–æ•°å­— " << snum << ", å‰©ä½™å­—ç¬¦ä¸² " << str << "\n";
 	return stoi(snum);
 }
-//<ÏµÊı> == <ÕûÊı> | ¿Õ
-//<ÔªËØ> == <´óĞ´×ÖÄ¸> | <´óĞ´×ÖÄ¸> <Ğ¡Ğ´×ÖÄ¸>
+//<ç³»æ•°> == <æ•´æ•°> | ç©º
+//<å…ƒç´ > == <å¤§å†™å­—æ¯> | <å¤§å†™å­—æ¯> <å°å†™å­—æ¯>
 string element(string& str)
-{//½øÈë´Ëº¯ÊıÌõ¼ş£¬¼ì²âµ½str[start]Îª´óĞ´×ÖÄ¸
-	//´Óstr´Ó0¿ªÊ¼»ñÈ¡Ò»¸öÔªËØ·µ»Ø£¬²¢½«¸ÃÔªËØÔÚstrÖĞÉ¾³ı
+{//è¿›å…¥æ­¤å‡½æ•°æ¡ä»¶ï¼Œæ£€æµ‹åˆ°str[start]ä¸ºå¤§å†™å­—æ¯
+	//ä»strä»0å¼€å§‹è·å–ä¸€ä¸ªå…ƒç´ è¿”å›ï¼Œå¹¶å°†è¯¥å…ƒç´ åœ¨strä¸­åˆ é™¤
 	int start = 0;
 	string ele;
 	if (isUpper(str[start]))
@@ -76,17 +76,17 @@ string element(string& str)
 		}
 	}
 	str.erase(0, start);
-	//cout << "»ñÈ¡ÔªËØ " << ele << ", Ê£Óà×Ö·û´® " << str << "\n";
+	//cout << "è·å–å…ƒç´  " << ele << ", å‰©ä½™å­—ç¬¦ä¸² " << str << "\n";
 	return ele;
 
 }
-//<Ïî> == <ÔªËØ> | "("<»¯Ñ§Ê½>")"
+//<é¡¹> == <å…ƒç´ > | "("<åŒ–å­¦å¼>")"
 void term(string &str, map<string, int>& map, int times = 1)
-{//½øÈë´Ëº¯ÊıÌõ¼ş£¬¼ì²âµ½str[start]Îª´óĞ´×ÖÄ¸»òÕßstr[start]Îª×óÀ¨ºÅ
-	//cout << "´¦Àí(Ïî + ÏµÊı) " << str << " ±¶ÊıÎª " << times << "\n";
+{//è¿›å…¥æ­¤å‡½æ•°æ¡ä»¶ï¼Œæ£€æµ‹åˆ°str[start]ä¸ºå¤§å†™å­—æ¯æˆ–è€…str[start]ä¸ºå·¦æ‹¬å·
+	//cout << "å¤„ç†(é¡¹ + ç³»æ•°) " << str << " å€æ•°ä¸º " << times << "\n";
 	int start = 0;
 	if (str[start] == '(')
-	{//Èç¹ûÓöµ½×óÀ¨ºÅ£¬ÔòÏòºóÑ°ÕÒ¶ÔÓ¦µÄÓÒÀ¨ºÅ£¬È»ºóÌáÈ¡À¨ºÅÄÚÄÚÈİ£¬²¢ÇÒÌ½²âÓÒÀ¨ºÅºóµÄÊı×Ö
+	{//å¦‚æœé‡åˆ°å·¦æ‹¬å·ï¼Œåˆ™å‘åå¯»æ‰¾å¯¹åº”çš„å³æ‹¬å·ï¼Œç„¶åæå–æ‹¬å·å†…å†…å®¹ï¼Œå¹¶ä¸”æ¢æµ‹å³æ‹¬å·åçš„æ•°å­—
 		stack<int> leftbracket;
 		leftbracket.push(start);
 		for (int i = start + 1; i < str.length(); i++)
@@ -101,7 +101,7 @@ void term(string &str, map<string, int>& map, int times = 1)
 				{
 
 					if (isDigit(str[i + 1]))
-					{//Èç¹ûÓÒÀ¨ºÅºóÃæÓĞÊı×Ö£¬ÔòÌáÈ¡Êı×Ö¡¢Ìí¼Ó±¶ÊıÔÙ½øĞĞ×óÓÒ·Ö¸î
+					{//å¦‚æœå³æ‹¬å·åé¢æœ‰æ•°å­—ï¼Œåˆ™æå–æ•°å­—ã€æ·»åŠ å€æ•°å†è¿›è¡Œå·¦å³åˆ†å‰²
 						int ttimes = Digits(str, i + 1);
 						string left = str.substr(start + 1, i - start - 1);
 						string right = str.substr(i + 1);
@@ -109,7 +109,7 @@ void term(string &str, map<string, int>& map, int times = 1)
 						term(right,map, times);
 					}
 					else
-					{//Èç¹ûÓÒÀ¨ºÅºóÃæÃ»ÓĞÊı×Ö£¬ÔòÖ±½Ó½øĞĞ×óÓÒ·Ö¸î
+					{//å¦‚æœå³æ‹¬å·åé¢æ²¡æœ‰æ•°å­—ï¼Œåˆ™ç›´æ¥è¿›è¡Œå·¦å³åˆ†å‰²
 						string left = str.substr(start + 1, i - start - 1);
 						string right = str.substr(i + 1);
 						term(left, map, times);
@@ -122,20 +122,20 @@ void term(string &str, map<string, int>& map, int times = 1)
 		}
 	}
 	else if (isUpper(str[start]))
-	{//Èç¹ûÓöµ½´óĞ´×ÖÄ¸£¬¾Í½øĞĞÔªËØ×ª»»£¬Ö®ºóÌ½²âÔªËØÖ®ºóµÄÊı×Ö
+	{//å¦‚æœé‡åˆ°å¤§å†™å­—æ¯ï¼Œå°±è¿›è¡Œå…ƒç´ è½¬æ¢ï¼Œä¹‹åæ¢æµ‹å…ƒç´ ä¹‹åçš„æ•°å­—
 		string ele = element(str);
 		if (isDigit(str[start]))
-		{//Èç¹ûÔªËØºóÓĞÊı×Ö£¬ÔòÌáÈ¡Êı×Ö¡¢¼ÆËã±¶Êıºó½«¶ÔÓ¦ÔªËØÌí¼ÓÖÁmap£»ÔÙ´¦ÀíÊ£ÓàµÄÏî
+		{//å¦‚æœå…ƒç´ åæœ‰æ•°å­—ï¼Œåˆ™æå–æ•°å­—ã€è®¡ç®—å€æ•°åå°†å¯¹åº”å…ƒç´ æ·»åŠ è‡³mapï¼›å†å¤„ç†å‰©ä½™çš„é¡¹
 			int ttimes = Digits(str, start);
 			map[ele] += ttimes * times;
-			//cout << "ÔªËØ " << ele << "ºóµÄÊı×ÖÎª " << ttimes << "\n";
-			//cout << "Ìí¼Ókey-value¶Ô " << ele << "----" << ttimes * times << "\n";
+			//cout << "å…ƒç´  " << ele << "åçš„æ•°å­—ä¸º " << ttimes << "\n";
+			//cout << "æ·»åŠ key-valueå¯¹ " << ele << "----" << ttimes * times << "\n";
 			term(str, map, times);
 		}
 		else
-		{//Èç¹ûÔªËØºóÃ»ÓĞÊı×Ö£¬ÔòÒÔ¼Ì³ĞÏÂÀ´µÄ±¶Êı½«¶ÔÓ¦ÔªËØÌí¼ÓÖÁmap£»ÔÙ´¦ÀíÊ£ÓàµÄÏî
+		{//å¦‚æœå…ƒç´ åæ²¡æœ‰æ•°å­—ï¼Œåˆ™ä»¥ç»§æ‰¿ä¸‹æ¥çš„å€æ•°å°†å¯¹åº”å…ƒç´ æ·»åŠ è‡³mapï¼›å†å¤„ç†å‰©ä½™çš„é¡¹
 			map[ele] += times;
-			//cout << "Ìí¼Ókey-value¶Ô " << ele << "--" << times << "\n";
+			//cout << "æ·»åŠ key-valueå¯¹ " << ele << "--" << times << "\n";
 			term(str, map, times);
 		}
 
@@ -145,15 +145,15 @@ void term(string &str, map<string, int>& map, int times = 1)
 
 
 }
-//<»¯Ñ§Ê½> == <Ïî> <ÏµÊı> |<»¯Ñ§Ê½> <Ïî> <ÏµÊı>
+//<åŒ–å­¦å¼> == <é¡¹> <ç³»æ•°> |<åŒ–å­¦å¼> <é¡¹> <ç³»æ•°>
 void formula(string &str, map<string, int> &map)
 {
 	if (isDigit(str[0]))
-	{//³¢ÊÔÌáÈ¡»¯Ñ§Ê½Ç°µÄÊı×Ö
+	{//å°è¯•æå–åŒ–å­¦å¼å‰çš„æ•°å­—
 		int times = Digits(str, 0);
 		term(str, map, times);
 	}
-	else//»¯Ñ§Ê½Ç°Ã»ÓĞÊı×Ö
+	else//åŒ–å­¦å¼å‰æ²¡æœ‰æ•°å­—
 		term(str, map);
 }
 
@@ -185,17 +185,17 @@ int main()
 
 		
 		for (int i = 0; i < arr1.size(); i++)
-		{//¼ÆËãµÈºÅ×ó±ßµÄ¸÷ÔªËØÊıÁ¿
+		{//è®¡ç®—ç­‰å·å·¦è¾¹çš„å„å…ƒç´ æ•°é‡
 			formula(arr1[i], le);
 		}
 		for (int i = 0; i < arr2.size(); i++)
-		{//¼ÆËãµÈºÅÓÒ±ßµÄ¸÷ÔªËØÊıÁ¿
+		{//è®¡ç®—ç­‰å·å³è¾¹çš„å„å…ƒç´ æ•°é‡
 			formula(arr2[i], re);
 		}
 		map<string, int>::iterator it;
 		bool flag = true;
 		for (it = le.begin(); it != le.end(); it++)
-		{//ÒÔ×óÎª»ù×¼¶ÔÓÒ½øĞĞÆ¥Åä
+		{//ä»¥å·¦ä¸ºåŸºå‡†å¯¹å³è¿›è¡ŒåŒ¹é…
 			//cout << it->first << "    " << it->second << endl;
 			if (re[it->first] == it->second)
 			{
@@ -208,7 +208,7 @@ int main()
 				flag = false;
 			}
 		}
-		if (flag && re.size() == 0)//Æ¥ÅäÕıÈ·²¢ÇÒÓÒ±ßÃ»ÓĞÊ£ÓàÔªËØ
+		if (flag && re.size() == 0)//åŒ¹é…æ­£ç¡®å¹¶ä¸”å³è¾¹æ²¡æœ‰å‰©ä½™å…ƒç´ 
 			cout << "Y" << endl;
 		else
 			cout << "N" << endl;
